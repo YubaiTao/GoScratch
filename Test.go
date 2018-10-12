@@ -1,22 +1,22 @@
 package main
 
 import (
-	"fmt"
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type Club struct {
-	name string
+	name        string
 	description string
 }
 
 func dbConnection() (db *sql.DB) {
 	dbDriver := "mysql"
 	dbUser := "yubaitao"
-	dbPass := "zhyahdr101010"
+	dbPass := "yubaitao"
 	dbName := "tcp(localhost:3306)/dbhw2"
-	db, err := sql.Open(dbDriver, dbUser + ":" + dbPass + "@" + dbName)
+	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@"+dbName)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -25,7 +25,7 @@ func dbConnection() (db *sql.DB) {
 
 func getClubs() Club {
 	db := dbConnection()
-	rows, err := db.Query("SELECT cname, cdescription FROM Club WHERE cid = ?" , 1)
+	rows, err := db.Query("SELECT cname, cdescription FROM Club WHERE cid = ?", 1)
 	if err != nil {
 		panic(err.Error())
 	}
